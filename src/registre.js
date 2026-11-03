@@ -15,12 +15,17 @@ export function formaterObservation(observation) {
 // Renvoie un texte avec une observation par ligne (lignes séparées par '\n'),
 // ou 'Aucune observation enregistrée.' si la liste est vide.
 export function listerObservations(observations) {
-
+  if (observations.length === 0) {
+    return "Aucune observation enregistrée.";
+  } else {
+    return observations.map(formaterObservation).
+      join('\n')
+  };
 }
 
 // Renvoie l'observation qui a cet identifiant de point, ou undefined si elle n'existe pas.
 export function trouverParId(observations, id) {
-
+  return observations.find(observations => observations.id === id);
 }
 
 // Contrôle une saisie AVANT de l'ajouter. Tous les champs arrivent sous forme de TEXTE :
@@ -31,16 +36,43 @@ export function trouverParId(observations, id) {
 // · texture présente dans TEXTURES · pH nombre entre 0 et 14 (bornes comprises)
 // · etatHumidite présent dans HUMIDITES. N'ajoutez aucune autre règle que celles-ci.
 export function verifierObservation(saisie, observations) {
-
+  const Erreur = [];
+  if (saisie.id === " ") {
+    Erreur.push("id est obligatoire");
+  } else {
+    for (const observ of observations) {
+      if (observ.id === saisie.id) {
+        Erreur.push("L'id existe deja")
+      }
+    }
+  }
+  if (TEXTURES.includes(saisie.texture)) {
+    observations.texture = saisie.teuture;
+  } else {
+    Erreur.push("Svp pH invalide ");
+  }
+  const ph = Number(saisie.pH.replace(',', '.'));
+  if (ph < 0 || ph > 14 || saisie.pH === '' || isNaN(ph)) {
+    Erreur.push("Entrez un nombre compris entre 0 et 14");
+  } else {
+    observations.pH = saisie.pH
+  }
+  if (saisie.parcelle.trim() === '') {
+    Erreur.push(`"Entrez une valeur de parcelle"`)
+  }
+  if (!HUMIDITES.includes(saisie.etatHumidite)) {
+    Erreur.push(`Entrez une valeur d'humidité valide:${HUMIDITES}`)
+  }
+  return Erreur;
 }
 
 // Fabrique l'observation à enregistrer à partir d'une saisie VALIDE : pH devient un nombre.
 export function creerObservation(saisie) {
-  throw new Error('TODO : coder creerObservation dans src/registre.js');
+
 }
 
 // Ajoute la saisie au carnet si elle est valide (verifierObservation, puis creerObservation).
 // Renvoie les erreurs : [] si l'observation a été ajoutée ; sinon les messages, et rien n'est ajouté.
 export function ajouterObservation(observations, saisie) {
-  throw new Error('TODO : coder ajouterObservation dans src/registre.js');
+
 }

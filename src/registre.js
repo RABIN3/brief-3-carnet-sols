@@ -9,18 +9,18 @@ export const HUMIDITES = ['sec', 'intermédiaire', 'humide'];
 // Renvoie une ligne de texte qui décrit l'observation.
 // Exemple : 'S01 | P1 | sableux | pH 5.2 | sec'
 export function formaterObservation(observation) {
-  throw new Error('TODO : coder formaterObservation dans src/registre.js');
+  return `${observation.id} | ${observation.parcelle} | ${observation.texture} | pH ${observation.pH} | ${observation.etatHumidite}`;
 }
 
 // Renvoie un texte avec une observation par ligne (lignes séparées par '\n'),
 // ou 'Aucune observation enregistrée.' si la liste est vide.
 export function listerObservations(observations) {
-  throw new Error('TODO : coder listerObservations dans src/registre.js');
+
 }
 
 // Renvoie l'observation qui a cet identifiant de point, ou undefined si elle n'existe pas.
 export function trouverParId(observations, id) {
-  throw new Error('TODO : coder trouverParId dans src/registre.js');
+
 }
 
 // Contrôle une saisie AVANT de l'ajouter. Tous les champs arrivent sous forme de TEXTE :
@@ -31,7 +31,7 @@ export function trouverParId(observations, id) {
 // · texture présente dans TEXTURES · pH nombre entre 0 et 14 (bornes comprises)
 // · etatHumidite présent dans HUMIDITES. N'ajoutez aucune autre règle que celles-ci.
 export function verifierObservation(saisie, observations) {
-  throw new Error('TODO : coder verifierObservation dans src/registre.js');
+
 }
 
 // Fabrique l'observation à enregistrer à partir d'une saisie VALIDE : pH devient un nombre.

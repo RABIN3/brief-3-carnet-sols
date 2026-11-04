@@ -11,7 +11,15 @@ import { SEUIL_PH_A_DISCUTER, compterParTexture, phMinMax, pointsADiscuter } fro
 const FICHIER_DONNEES = 'donnees/observations.json';
 
 //------------------------------------Affichage------------------------------------//
+function afficherAcceuil() {
+  console.log('==========================================================================');
+  console.log("CARNET D'OBSERVATION DES SOLS")
+  console.log('Ferme pédagogique ')
+  console.log('===========================================================================');
 
+
+
+}
 
 async function main() {
   ouvrirSaisie();

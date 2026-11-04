@@ -83,10 +83,35 @@ async function rechercher(observations) {
       const saisie = await demander('Point : ');
       if (saisie === null) return;
       const id = saisie.toLowerCase();
-      const observation = trouverParId();
+      const observation = trouverParId(observations, id);
+      console.log(observation === undefined ? `observation${id} introuvable.` : formaterObservation(observation));
+      break;
+    }
+    case '2': {
+      const saisie = await demander('Parcelle : ');
+      if (saisie === null) return;
+      const parcelle = saisie.toUpperCase();
+      const trouvees = filtrerParParcelle(observations, parcelle);
+      console.log(`${trouvees.length} observation(s) sur la parcelle ${parcelle} : `);
+      console.log(listerObservations(trouvees));
+      break;
+    }
+    case '3': {
+      const saisie = await demander('Texture : ');
+      if (saisie === null) return;
+      const texture = saisie.toLowerCase();
+      const trouvées = filtrerParTexture(observations, texture);
+      console.log(`${trouvées.length} observation(s) de texture ${texture} : `);
+      console.log(listerObservations(trouvées));
+      break;
     }
   }
+
 }
+
+
+
+
 
 
 

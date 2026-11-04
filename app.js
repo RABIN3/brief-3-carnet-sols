@@ -75,8 +75,8 @@ async function rechercher(observations) {
   console.log('1. Par point (identifiant');
   console.log('2. Par parcelle');
   console.log('3. Les observations d"une textures');
-  const autresChoix = await demander('Votre choix : ');
-  if (autresChoix === null) return;
+  const sousChoix = await demander('Votre choix : ');
+  if (sousChoix === null) return;
 
   switch (autresChoix) {
     case '1': {
@@ -100,17 +100,53 @@ async function rechercher(observations) {
       const saisie = await demander('Texture : ');
       if (saisie === null) return;
       const texture = saisie.toLowerCase();
-      const trouvées = filtrerParTexture(observations, texture);
-      console.log(`${trouvées.length} observation(s) de texture ${texture} : `);
-      console.log(listerObservations(trouvées));
+      const trouvees = filtrerParTexture(observations, texture);
+      console.log(`${trouvees.length} observation(s) de texture ${texture} : `);
+      console.log(listerObservations(trouvees));
       break;
     }
   }
-
 }
 
+//Choix 4 : trier par pH
+
+async function trier(observations) {
+  console.log('--------tier------');
+  console.log('1. Par pH croissant');
+  const sousChoix = await demander('votre choix:');
+  if (sousChoix === null) return;
+  if (sousChoix === '1') {
+    console.log(listerObservations(trierParPh(observations)));
+    console.log('choix inconnu: retour au menu');
+  } else {
+    console.log('Choix inconnu: retour au menu. ');
+  }
+}
+
+//Coix 5 :  la synthèse
+
+function synthèse(observations) {
+  console.log('----synthèse des observations----');
+  console.log(`Nombre d'observations : ${observations.length}`);
+  const bornes = phMinMax(observations);
+  if (bornes === null) {
+    console.log('pas de pH minimum et maximum');
+  } else {
+    console.log(`pH minimum: ${bornes.min}, pH maximum: ${bornes.max}`);
+  }
+  console.console.log('Observation par texture : ');
+  for (const [texture, nombre] of Object.entres(compterParTexture(observations))) {
+    console.log(`${texture} : ${nombre}`);
+  }
+  const phAdiscuter = pointsADiscuter(observations, SEUIL_PH_A_DISCUTER);
+  console.log(`Points à discuter(pH < ${SEUIL_PH_A_DISCUTER}) : ${phAdiscuter.length}`);
+  for (const observation of phAdiscuter) {
+    console.log(`${formaterObservation(observations)}`);
+  }
+  console.log()
 
 
+}
 
 
 

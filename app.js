@@ -143,17 +143,27 @@ function synthèse(observations) {
   for (const observation of phAdiscuter) {
     console.log(`${formaterObservation(observations)}`);
   }
-  console.log()
-
-
+  console.log('Rappels; le pH est sans unité. Pas de moyennede pH calcilée(echelle logarithmique).');
+  console.log('Ces points ne sont pas un diagnostiquede fertilisation : ils servent à une etude avec le coach.');
 }
 
-
-
-
+//--------------------------Programme pricipal------------------------------------//
 
 async function main() {
   ouvrirSaisie();
+  afficherAcceuil();
+
+  //Carger les données : on continu en cas d'échec avec un tableau vide.
+  let observations = [];
+  try {
+    observations = await chargerJson(FICHIER_DONNEES);
+    console.log(`${observations.length} observation(s) chargée dpuis${FICHIER_DONNEES}.`);
+  } catch (erreur) {
+    console.log(`Impossible de lire ${FICHIER_DONNEES} : ${erreur.message}. Le canet`)
+  }
+
+
+
   console.log("À compléter : écrivez le menu dans app.js (fiches/3-ajouter-lister.md).");
   fermerSaisie();
 }

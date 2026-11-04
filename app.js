@@ -16,9 +16,16 @@ function afficherAcceuil() {
   console.log("CARNET D'OBSERVATION DES SOLS")
   console.log('Ferme pédagogique ')
   console.log('===========================================================================');
-
-
-
+}
+//------------------------------MENU--------------------------//
+function afficherMenu() {
+  console.log("1. Ajouter une observation");
+  console.log("2. Lister les observations");
+  console.log("3. Rechercher(point, parcelle,texture)");
+  console.log("4. Trier par pH");
+  console.log("5. Synthèse des observations");
+  console.log("0. Quitter");
+  console.log("Votre choix");
 }
 
 async function main() {

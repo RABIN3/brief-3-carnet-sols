@@ -2,10 +2,10 @@
 
 > Une page, relue par le coach agronomie, d'après la fiche de terrain. Vous décrivez des observations et proposez une hypothèse ; ni diagnostic de fertilisation, ni conseil. Les valeurs sont fictives.
 
-| Point | Parcelle | Texture | pH  | Humidité        |      Le constat, en une phrase                                          |
-| ---   | ---      | ---     | --- | ---             |                       ---                                               |
-| S03   |P2        |Sableux  |4.8  | Sec             |le sol sableux a un pH base et un etatHumidité sec                       |
-| S04   |P5        |Limoneux |6.5  |Intermediare     |le sol limoneux a un pH adaptablbe et un état d'humidité  intermedidiaire|
+| Point | Parcelle | Texture | pH  | Humidité     |Le constat, en une phrase                                                |
+| ---   | ---      | ---     | --- | ---          |                       ---                                               |
+| S03   |P2        |Sableux  |4.8  | Sec          |le sol sableux a un pH base et un etatHumidité sec                       |
+| S04   |P5        |Limoneux |6.5  |Intermediare  |le sol limoneux a un pH adaptablbe et un état d'humidité  intermedidiaire|
 
 **Un lien possible avec l'eau ou les plantes**, pour l'une des deux :pour le la parcelle P2 de texture sableuse ne peut retenir l'eau donc elle n'est pas propice pour certaines ple avec de coutes racines.
 

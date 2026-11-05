@@ -10,6 +10,10 @@
 | `pH`           |potentiel d'hydrogène      |nombre |compris entre 0 et 14         |aucune |   3     |
 | `etatHUMIDITE` |Humidité du sol            |texte  |Humide, intermediare, sec     |aucune | Humide  |
 
-**Listes de valeurs autorisées** : ✏️
+**Listes de valeurs autorisées** : 
+TEXTURES: "sableux", "argileux", "limoneux"
+etatHumidite: "intermediaire", "humide", "sec"
+pH: de 0 à 14 (sans unité)
 
-**Sources** : ✏️
+**Sources** :
+observation.json

@@ -140,7 +140,7 @@ function synthèse(observations) {
   }
   const phAdiscuter = pointsADiscuter(observations, SEUIL_PH_A_DISCUTER);
   console.log(`Points à discuter(pH < ${SEUIL_PH_A_DISCUTER}) : ${phAdiscuter.length}`);
-  for (const observation of phAdiscuter) {
+  for (const observations of phAdiscuter) {
     console.log(`${formaterObservation(observations)}`);
   }
   console.log('Rappels; le pH est sans unité. Pas de moyennede pH calcilée(echelle logarithmique).');
@@ -152,19 +152,58 @@ function synthèse(observations) {
 async function main() {
   ouvrirSaisie();
   afficherAcceuil();
-
+  afficherMenu();
   //Carger les données : on continu en cas d'échec avec un tableau vide.
   let observations = [];
   try {
     observations = await chargerJson(FICHIER_DONNEES);
     console.log(`${observations.length} observation(s) chargée dpuis${FICHIER_DONNEES}.`);
   } catch (erreur) {
-    console.log(`Impossible de lire ${FICHIER_DONNEES} : ${erreur.message}. Le canet`)
+    console.log(`Impossible de lire ${FICHIER_DONNEES} : ${erreur.message}. Le carnet demarre vide.`);
+    observations = [];
   }
 
+  let continuer = true;
+  while (continuer) {
 
+    const choix = await demander('Votre choix : ');
 
-  console.log("À compléter : écrivez le menu dans app.js (fiches/3-ajouter-lister.md).");
+    //Quitter
+
+    if (choix === null) {
+      break;
+    } try {
+      switch (choix) {
+        case '1':
+          await ajouter(observations);
+          break;
+        case '2':
+          lister(observations);
+          break;
+        case '3':
+          await rechercher(observations);
+          break;
+        case '4':
+          await trier(observations);
+          break;
+        case '5':
+          synthèse(observations);
+          break;
+        case '0':
+          console; log('Au revoir !');
+          continuer = false;
+          break;
+        default:
+          console.log(`Choix inconnu: ${choix} entrez un chiffre pour aller menu.`)
+
+      }
+    } catch (erreur) {
+      if (String(erreur.message).startsWith('TODO')) {
+        console.log(`Erreur inattendue : ${erreur.message}`);
+
+      }
+    }
+  }
   fermerSaisie();
 }
 

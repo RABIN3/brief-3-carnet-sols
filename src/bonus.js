@@ -63,5 +63,24 @@ export function trierParPhDecroissant(observations) {
 // Exemple : { texture: 'limoneux', nombre: 4 }
 
 export function textureLaPlusFrequente(observations) {
-
+  if (observations.length === 0) {
+    return null;
+  }
+  const compteur = {};
+  for (const observation of observations) {
+    if (compteur[observation.texture] === undefined) {
+      compteur[observation.texture] = 1;
+    } else {
+      compteur[observation.texture]++;
+    }
+  }
+  let meilleurTexture = null;
+  let meilleurNombre = 0;
+  for (const texture in compteur) {
+    if (compteur[texture] > meilleurNombre) {
+      meilleurTexture = texture;
+      meilleurNombre = compteur[texture];
+    }
+    return { texture: meilleurTexture, nombre: meilleurNombre };
+  }
 }

@@ -7,6 +7,7 @@ import { chargerJson, enregistrerJson } from './src/stockage.js';
 import { HUMIDITES, TEXTURES, ajouterObservation, formaterObservation, listerObservations, trouverParId } from './src/registre.js';
 import { filtrerParParcelle, filtrerParTexture, trierParPh } from './src/recherche.js';
 import { SEUIL_PH_A_DISCUTER, compterParTexture, phMinMax, pointsADiscuter } from './src/synthese.js';
+import { textureLaPlusFrequente } from './src/bonus.js';
 
 const FICHIER_DONNEES = 'donnees/observations.json';
 
@@ -24,6 +25,8 @@ function afficherMenu() {
   console.log("3. Rechercher(point, parcelle,texture)");
   console.log("4. Trier par pH");
   console.log("5. Synthèse des observations");
+  console.log("6. Supprimer observation");
+  console.log("7. Modifier observation");
   console.log("0. Quitter");
   console.log("Votre choix");
 }
@@ -141,6 +144,14 @@ function synthèse(observations) {
   for (const [texture, nombre] of Object.entries(compterParTexture(observations))) {
     console.log(`${texture} : ${nombre}`);
   }
+
+  const texFrequente = textureLaPlusFrequente(observations);
+  if (texFrequente === null) {
+    console.log('La texture la plus frquente : pas de données');
+  } else {
+    console.log(`La texeturela plus frequente: ${texFrequente.texture} (${texFrequente.nombre} observation(s))`);
+  }
+
   const phAdiscuter = pointsADiscuter(observations, SEUIL_PH_A_DISCUTER);
   console.log(`Points à discuter(pH < ${SEUIL_PH_A_DISCUTER}) : ${phAdiscuter.length}`);
   for (const observation of phAdiscuter) {
@@ -190,6 +201,12 @@ async function main() {
           break;
         case '5':
           synthèse(observations);
+          break;
+        case '6':
+          await supprimer(observations);
+          break;
+        case '7':
+          await modifier(observations);
           break;
         case '0':
           console.log('Au revoir !');

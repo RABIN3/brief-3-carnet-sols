@@ -5,6 +5,7 @@
 ## Contexte
 
 ✏️ *En cinq à huit phrases : qui utilise l'outil (son métier, son geste professionnel), son besoin, ce qu'il saisit, ce que le programme lui affiche, ce que l'outil ne fait pas.*
+l'outil est utilisé par l'équipe pédagogique de la ferme connectée, son geste professionnel est d'observer un point avec la fiche de terrain, renseigner une classe de texture et une valeur de pH, puis relier ces observations aux interactions entre l'eau, le sol et la plante. Le programme affiche les relevés sur le pH, la texture du sol et l'état d'humidité du sol à l'aide de l'id du sol. Il ne peut produire de diagnostic de fertilisation ni de moyenne de pH.
 
 ## Prérequis et lancement
 
@@ -29,16 +30,17 @@ Sous PowerShell, si `npm` est bloqué : `npm.cmd test`.
 - [x] Rechercher par point ou par parcelle ; filtrer par texture
 - [x] Trier par pH
 - [x] Synthèse : pH minimum et maximum, nombre par texture, points à discuter (pH < 5,5)
-- [ ] Bonus : supprimer et modifier une observation (choix 6 et 7)
-- [ ] Bonus : tri par pH décroissant, texture la plus fréquente
+- [x] Bonus : supprimer et modifier une observation (choix 6 et 7)
+- [x] Bonus : tri par pH décroissant, texture la plus fréquente
 
 ## Données
 
 ✏️ *Le fichier, le nombre d'observations, les champs (voir [docs/dictionnaire-donnees.md](docs/dictionnaire-donnees.md)), le pH sans unité. Rappelez qu'elles sont fictives.*
 
 ## Limites
+le carnet donne pas de statistique sur la recolte.
+le carnet ne previent pas interpreter à lui seul un diagnostique.
 
-✏️ *Au moins trois. Par exemple : le carnet repère des valeurs à discuter, mais ne produit aucun diagnostic de fertilisation.*
 
 ## Documents
 
@@ -47,3 +49,7 @@ Sous PowerShell, si `npm` est bloqué : `npm.cmd test`.
 ## Auteur
 
 ✏️ *Prénom NOM, compte GitHub. Entraide : avec qui, sur quoi.*
+Prenoms : Kouamé Rabin-junior, Nom: KOKO
+Entraide : OBA Ghislain (sur des erreurs de synthaxe)
+           Adimoi Angaman jules- Christ (fonction verifierObservation)
+            

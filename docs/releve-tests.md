@@ -17,13 +17,14 @@ nombre de texture: -sableux: 3 (S01, S04, S08).
 
 **Essais dans le menu** : un ajout valide (encore là après redémarrage), chaque règle refusée, une recherche introuvable, chaque tri, la synthèse, un choix inconnu.
 
-| Action | Attendu | Obtenu | Testeur |
-| --- | --- | --- | --- |
-| ✏️ | | | |
-| ✏️ | | | |
-| ✏️ | | | |
-| ✏️ | | | |
-| ✏️ | | | |
-| ✏️ | | | |
+
+| Action        | Attendu                 | Obtenu                      | Testeur |
+| ---           | ---                     | ---                         | ---     |
+| ajout valide  |Observation S11 ajoutée |le carnet compte 11 observation | Ghisrock |
+| synthèse      |affichage des des differents pH|    reussir                |Ghisrock |
+| tri par pH    |  trir avec succès      |         reussir             | Ghisrock    |
+| lister les observations |  succès      |         reussir                      |  Ghisrock  | 
+|recherche par texture | affichage des différents texture|3 observations de texture |  Ghisrock |
+
 
 **Sur un autre poste** (`git clone`, `node app.js`, `npm test`, en suivant le README) : ✏️

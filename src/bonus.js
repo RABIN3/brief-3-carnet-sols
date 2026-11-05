@@ -74,13 +74,13 @@ export function textureLaPlusFrequente(observations) {
       compteur[observation.texture]++;
     }
   }
-  let meilleurTexture = null;
-  let meilleurNombre = 0;
+  let maxTexture = null;
+  let maxNombre = 0;
   for (const texture in compteur) {
-    if (compteur[texture] > meilleurNombre) {
-      meilleurTexture = texture;
-      meilleurNombre = compteur[texture];
+    if (compteur[texture] > maxNombre) {
+      maxTexture = texture;
+      maxNombre = compteur[texture];
     }
   }
-  return { texture: meilleurTexture, nombre: meilleurNombre };
+  return { texture: maxTexture, nombre: maxNombre };
 }

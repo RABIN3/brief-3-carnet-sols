@@ -63,24 +63,19 @@ export function trierParPhDecroissant(observations) {
 // Exemple : { texture: 'limoneux', nombre: 4 }
 
 export function textureLaPlusFrequente(observations) {
-  if (observations.length === 0) {
+  if (!observations || observations.length === 0) {
     return null;
   }
-  const compteur = {};
+  const compteur = compterParTexture(observations);
+  let texMax = null;
+  let nbreMax = 0;
   for (const observation of observations) {
-    if (compteur[observation.texture] === undefined) {
-      compteur[observation.texture] = 1;
-    } else {
-      compteur[observation.texture]++;
-    }
+    const texture = observation.texture;
+    if (texture && compteur[texture] > nbreMax) {
+      nbreMax = compteur[texture];
+      texMax = texture;
+    };
+
   }
-  let maxTexture = null;
-  let maxNombre = 0;
-  for (const texture in compteur) {
-    if (compteur[texture] > maxNombre) {
-      maxTexture = texture;
-      maxNombre = compteur[texture];
-    }
-  }
-  return { texture: maxTexture, nombre: maxNombre };
+  return { texture: texMax, nombre: nbreMax };
 }

@@ -31,17 +31,21 @@ function afficherMenu() {
 
 //Choix 1 : poser les cinq questions, vérifier, ajouter, enrengistrer
 
-async function ajouter(paramsobservations) {
+async function ajouter(observations) {
   console.log("------------Ajouter une obsevation-------------");
 
   const id = await demander('Point observé (ex. S11) :');
   if (id === null) return;
+
   const parcelle = await demander('Parcelle(ex. P1) :');
   if (parcelle === null) return;
+
   const texture = await demander(`Texture(${TEXTURES.join(',')}) :  `);
   if (texture === null) return;
+
   const pH = await demander('pH(nombre de 0 à 14, sans unités, virgule acceptée) : ');
-  if (pH = null) return;
+  if (pH === null) return;
+
   const etatHumidite = await demander(`Etat d'humidité(${HUMIDITES.join(',')}) :`);
   if (etatHumidite === null) return;
 
@@ -62,7 +66,7 @@ async function ajouter(paramsobservations) {
     return;
   }
   await enregistrerJson(FICHIER_DONNEES, observations);
-  console.log(`Observation ${saisie.id} ajoutée. le carnet compte ${observation.length} observation`);
+  console.log(`Observation ${saisie.id} ajoutée. le carnet compte ${observations.length} observation`);
 }
 //Choix 2 : Lister
 function lister(observations) {
@@ -78,11 +82,11 @@ async function rechercher(observations) {
   const sousChoix = await demander('Votre choix : ');
   if (sousChoix === null) return;
 
-  switch (autresChoix) {
+  switch (sousChoix) {
     case '1': {
       const saisie = await demander('Point : ');
       if (saisie === null) return;
-      const id = saisie.toLowerCase();
+      const id = saisie.toUpperCase();
       const observation = trouverParId(observations, id);
       console.log(observation === undefined ? `observation${id} introuvable.` : formaterObservation(observation));
       break;
@@ -117,7 +121,6 @@ async function trier(observations) {
   if (sousChoix === null) return;
   if (sousChoix === '1') {
     console.log(listerObservations(trierParPh(observations)));
-    console.log('choix inconnu: retour au menu');
   } else {
     console.log('Choix inconnu: retour au menu. ');
   }
@@ -134,19 +137,18 @@ function synthèse(observations) {
   } else {
     console.log(`pH minimum: ${bornes.min}, pH maximum: ${bornes.max}`);
   }
-  console.console.log('Observation par texture : ');
-  for (const [texture, nombre] of Object.entres(compterParTexture(observations))) {
+  console.log('Observation par texture : ');
+  for (const [texture, nombre] of Object.entries(compterParTexture(observations))) {
     console.log(`${texture} : ${nombre}`);
   }
   const phAdiscuter = pointsADiscuter(observations, SEUIL_PH_A_DISCUTER);
   console.log(`Points à discuter(pH < ${SEUIL_PH_A_DISCUTER}) : ${phAdiscuter.length}`);
-  for (const observations of phAdiscuter) {
-    console.log(`${formaterObservation(observations)}`);
+  for (const observation of phAdiscuter) {
+    console.log(`${formaterObservation(observation)}`);
   }
   console.log('Rappels; le pH est sans unité. Pas de moyennede pH calcilée(echelle logarithmique).');
   console.log('Ces points ne sont pas un diagnostiquede fertilisation : ils servent à une etude avec le coach.');
 }
-
 //--------------------------Programme pricipal------------------------------------//
 
 async function main() {
@@ -190,7 +192,7 @@ async function main() {
           synthèse(observations);
           break;
         case '0':
-          console; log('Au revoir !');
+          console.log('Au revoir !');
           continuer = false;
           break;
         default:

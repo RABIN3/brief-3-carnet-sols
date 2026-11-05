@@ -81,6 +81,6 @@ export function textureLaPlusFrequente(observations) {
       meilleurTexture = texture;
       meilleurNombre = compteur[texture];
     }
-    return { texture: meilleurTexture, nombre: meilleurNombre };
   }
+  return { texture: meilleurTexture, nombre: meilleurNombre };
 }

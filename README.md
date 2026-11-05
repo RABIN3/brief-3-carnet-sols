@@ -36,7 +36,9 @@ Sous PowerShell, si `npm` est bloqué : `npm.cmd test`.
 ## Données
 
 ✏️ *Le fichier, le nombre d'observations, les champs (voir [docs/dictionnaire-donnees.md](docs/dictionnaire-donnees.md)), le pH sans unité. Rappelez qu'elles sont fictives.*
-
+ Fichier: observations.json
+ nombre d'observations: 10
+ Champs: Textures, etatHumidite, pH
 ## Limites
 le carnet donne pas de statistique sur la recolte.
 le carnet ne previent pas interpreter à lui seul un diagnostique.
